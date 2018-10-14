@@ -10,6 +10,7 @@ import static de.pauhull.utils.misc.MinecraftVersion.v1_13;
 
 /**
  * Particles for 1.13 update
+ *
  * @author pauhull
  * @version 1.1
  */
@@ -59,6 +60,7 @@ public enum Particles {
     TOWN_AURA("H");
 
     private static Class<?> clazz;
+    private static Map<String, Object> particles = new HashMap<>();
 
     static {
         if (MinecraftVersion.CURRENT_VERSION.isGreaterOrEquals(v1_13)) {
@@ -66,12 +68,11 @@ public enum Particles {
         }
     }
 
-    private static Map<String, Object> particles = new HashMap<>();
-
     private String id;
 
     /**
      * Create new particle with corresponding field in {@link net.minecraft.server.v1_13_R1.Particles}
+     *
      * @param id Field in original Particles class
      */
     Particles(String id) {
@@ -80,6 +81,7 @@ public enum Particles {
 
     /**
      * Get particle object from enum
+     *
      * @return the particle
      */
     public Object get() {

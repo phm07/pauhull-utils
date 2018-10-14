@@ -1,5 +1,6 @@
 /**
  * Utility for easy scheduler creation.
+ *
  * @author pauhull
  * @version 1.0
  */

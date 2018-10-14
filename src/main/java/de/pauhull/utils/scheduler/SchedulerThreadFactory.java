@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Thread factory used for {@link Scheduler}
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -19,6 +20,7 @@ public class SchedulerThreadFactory implements ThreadFactory {
 
     /**
      * Creates new Scheduler Thread Factory with given name
+     *
      * @param threadName Thread name, use %THREAD_ID% as placeholder for Thread id
      */
     public SchedulerThreadFactory(String threadName) {
@@ -27,6 +29,7 @@ public class SchedulerThreadFactory implements ThreadFactory {
 
     /**
      * Creates new Thread
+     *
      * @param runnable The Runnable
      * @return The Thread
      */

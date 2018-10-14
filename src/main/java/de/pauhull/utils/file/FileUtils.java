@@ -8,6 +8,7 @@ import java.nio.file.Files;
 
 /**
  * Utilities for files
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -15,8 +16,9 @@ public class FileUtils {
 
     /**
      * Copies file
+     *
      * @param from The file to copy
-     * @param to Where to copy the file
+     * @param to   Where to copy the file
      */
     public static void copy(String from, String to) {
         File file = new File(to);
@@ -36,6 +38,7 @@ public class FileUtils {
 
     /**
      * Removes extension from file name (example: test.png -> test)
+     *
      * @param s The file name to remove the extension from
      * @return The file name without extension
      */

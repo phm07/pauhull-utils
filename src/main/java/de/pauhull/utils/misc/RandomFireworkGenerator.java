@@ -11,6 +11,7 @@ import java.util.Random;
 
 /**
  * Creates random fireworks
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -20,8 +21,9 @@ public class RandomFireworkGenerator {
 
     /**
      * Shoots random firework
+     *
      * @param location Location to spawn firework in
-     * @param amount Amount of fireworks
+     * @param amount   Amount of fireworks
      */
     public static void shootRandomFirework(Location location, int amount) {
 
@@ -53,6 +55,7 @@ public class RandomFireworkGenerator {
 
     /**
      * Choose random FireworkEffectType
+     *
      * @return The Type
      */
     public static FireworkEffect.Type getRandomFireworkEffectType() {

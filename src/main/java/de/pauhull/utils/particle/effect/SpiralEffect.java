@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Displays Spiral effect
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -15,6 +16,7 @@ public class SpiralEffect extends ParticleEffect {
 
     /**
      * Creates Spiral effect
+     *
      * @param scheduler      Scheduler for particle timing
      * @param location       Bottom middle location of the spiral
      * @param particlePlayer ParticlePlayer to display particles

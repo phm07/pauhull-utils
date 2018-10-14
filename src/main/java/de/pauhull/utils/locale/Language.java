@@ -12,21 +12,17 @@ import java.util.Arrays;
 
 /**
  * Extend this class to create a new language
+ *
  * @author pauhull
  * @version 1.0
  */
 public abstract class Language {
 
     /**
-     * Call {@link #writeTo(Class, File)} with own class when overriding
-     * @param file File to write language file to
-     */
-    public abstract void writeTo(File file);
-
-    /**
      * Write language class to file
+     *
      * @param languageClass Class to write
-     * @param file File to write to
+     * @param file          File to write to
      * @throws IOException Throws IOException when there's an error
      */
     protected static void writeTo(Class<?> languageClass, File file) throws IOException {
@@ -76,5 +72,12 @@ public abstract class Language {
         configuration.save(file);
 
     }
+
+    /**
+     * Call {@link #writeTo(Class, File)} with own class when overriding
+     *
+     * @param file File to write language file to
+     */
+    public abstract void writeTo(File file);
 
 }

@@ -13,6 +13,7 @@ import java.io.IOException;
 
 /**
  * Loads image to byte array for stained hardened clay
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -20,7 +21,8 @@ public class ImageLoader {
 
     /**
      * Loads image to ImageInfo
-     * @param file File to load to image
+     *
+     * @param file     File to load to image
      * @param dithered Use Floyd-Steinberg-Dithering (increases image quality)
      * @return The ImageInfo
      * @throws IOException Throws exception on error
@@ -114,27 +116,6 @@ public class ImageLoader {
     }
 
     /**
-     * Contains info about width, height and image data
-     */
-    public static class ImageInfo {
-
-        @Getter
-        @Setter
-        private int width, height;
-
-        @Getter
-        @Setter
-        private byte[] data;
-
-        public ImageInfo(int width, int height, byte[] data) {
-            this.width = width;
-            this.height = height;
-            this.data = data;
-        }
-
-    }
-
-    /**
      * Get clay color from RGB color
      */
     public enum ClayColor {
@@ -213,6 +194,27 @@ public class ImageLoader {
             double blue = b.getBlue() - a.getBlue();
 
             return Math.sqrt(red * red + green * green + blue * blue);
+        }
+
+    }
+
+    /**
+     * Contains info about width, height and image data
+     */
+    public static class ImageInfo {
+
+        @Getter
+        @Setter
+        private int width, height;
+
+        @Getter
+        @Setter
+        private byte[] data;
+
+        public ImageInfo(int width, int height, byte[] data) {
+            this.width = width;
+            this.height = height;
+            this.data = data;
         }
 
     }

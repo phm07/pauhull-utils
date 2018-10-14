@@ -6,6 +6,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Utility used for creation of ScheduledExecutorServices and ExecutorServices
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -15,6 +16,7 @@ public class Scheduler {
 
     /**
      * Creates new ExecutorService with {@link SchedulerThreadFactory}
+     *
      * @return The ExecutorService
      */
     public static ExecutorService createExecutorService() {
@@ -23,6 +25,7 @@ public class Scheduler {
 
     /**
      * Creates new ScheduledExecutorService with {@link SchedulerThreadFactory}
+     *
      * @return The ScheduledExecutorService
      */
     public static ScheduledExecutorService createScheduledExecutorService() {

@@ -12,6 +12,7 @@ import java.nio.charset.Charset;
 
 /**
  * Easy-to-use config for your plugin
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -31,9 +32,10 @@ public class Config {
 
     /**
      * Creates new config
-     * @param file Where the config is stored
+     *
+     * @param file   Where the config is stored
      * @param plugin The plugin
-     * @param utf8 Use utf-8
+     * @param utf8   Use utf-8
      */
     public Config(File file, JavaPlugin plugin, boolean utf8) {
         this.utf8 = utf8;
@@ -55,6 +57,7 @@ public class Config {
 
     /**
      * Loads config from file
+     *
      * @param file File to load
      */
     private void load(File file) {

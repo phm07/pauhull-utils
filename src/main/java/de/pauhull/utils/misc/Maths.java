@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Math utilities
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -13,6 +14,7 @@ public class Maths {
 
     /**
      * Generate random number between min and max
+     *
      * @param min Minimum value
      * @param max Maximum value
      * @return The number
@@ -23,6 +25,7 @@ public class Maths {
 
     /**
      * Generate random number between min and max
+     *
      * @param min Minimum value
      * @param max Maximum value
      * @return The number
@@ -33,6 +36,7 @@ public class Maths {
 
     /**
      * Generate random number between min and max
+     *
      * @param min Minimum value
      * @param max Maximum value
      * @return The number
@@ -43,7 +47,8 @@ public class Maths {
 
     /**
      * Clamps number between min and max value
-     * @param x The number
+     *
+     * @param x   The number
      * @param min Minimum value
      * @param max Maximum value
      * @return The clamped number
@@ -54,7 +59,8 @@ public class Maths {
 
     /**
      * Clamps number between min and max value
-     * @param x The number
+     *
+     * @param x   The number
      * @param min Minimum value
      * @param max Maximum value
      * @return The clamped number
@@ -65,7 +71,8 @@ public class Maths {
 
     /**
      * Clamps number between min and max value
-     * @param x The number
+     *
+     * @param x   The number
      * @param min Minimum value
      * @param max Maximum value
      * @return The clamped number

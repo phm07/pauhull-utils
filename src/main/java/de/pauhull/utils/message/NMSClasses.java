@@ -9,13 +9,13 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.sql.Ref;
 
 import static de.pauhull.utils.misc.MinecraftVersion.v1_11;
 
 /**
  * Utility for NMS titles and ActionBars.
  * Please use a {@link de.pauhull.utils.message.type.MessageType} and not this class directly
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -39,7 +39,7 @@ public class NMSClasses {
     public static Object enumTitleActionSubTitle;
 
     static {
-        if(MinecraftVersion.CURRENT_VERSION.isLower(v1_11)) {
+        if (MinecraftVersion.CURRENT_VERSION.isLower(v1_11)) {
             chatSerializerClass = Reflection.getNMSClass("ChatSerializer");
             packetPlayOutTitleClass = Reflection.getNMSClass("PacketPlayOutTitle");
             enumTitleActionClass = Reflection.getNMSClass("EnumTitleAction");
@@ -73,29 +73,30 @@ public class NMSClasses {
 
     /**
      * Sends title via NMS
-     * @param player The player to send the title to
-     * @param title The title (can be null)
+     *
+     * @param player   The player to send the title to
+     * @param title    The title (can be null)
      * @param subTitle The sub title (can be null)
-     * @param fadeIn Fade in time in ticks
-     * @param stay Stay time in ticks
-     * @param fadeOut Fade out time in ticks
+     * @param fadeIn   Fade in time in ticks
+     * @param stay     Stay time in ticks
+     * @param fadeOut  Fade out time in ticks
      */
     public static void sendTitlesNMS(Player player, @Nullable String title, @Nullable String subTitle, int fadeIn, int stay, int fadeOut) {
         try {
 
-            if(title != null) {
+            if (title != null) {
                 Object titleComponent = a.invoke(null, "{\"text\":\"" + title + "\"}");
                 Object titlePacket = packetPlayOutTitleConstructor1.newInstance(enumTitleActionTitle, titleComponent);
                 Reflection.sendPacket(player, titlePacket);
             }
 
-            if(subTitle != null) {
+            if (subTitle != null) {
                 Object subTitleComponent = a.invoke(null, "{\"text\":\"" + subTitle + "\"}");
                 Object subTitlePacket = packetPlayOutTitleConstructor1.newInstance(enumTitleActionSubTitle, subTitleComponent);
                 Reflection.sendPacket(player, subTitlePacket);
             }
 
-            if(title != null && subTitle != null) {
+            if (title != null && subTitle != null) {
                 Object timingsPacket = packetPlayOutTitleConstructor2.newInstance(fadeIn, stay, fadeOut);
                 Reflection.sendPacket(player, timingsPacket);
             }
@@ -107,7 +108,8 @@ public class NMSClasses {
 
     /**
      * Sends ActionBar over NMS
-     * @param player The player to send the action bar to
+     *
+     * @param player    The player to send the action bar to
      * @param actionBar Action bar text
      */
     public static void sendActionBarNMS(Player player, @NonNull String actionBar) {

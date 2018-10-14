@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 /**
  * Use this class in {@link de.pauhull.utils.locale.Language} to create a string that can be changed in the config
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -26,7 +27,8 @@ public class LocaleString {
 
     /**
      * Create LocaleString with given {@link LocaleSection} and default values
-     * @param section The section the string is in (e.g. INFO, ERROR, SUCCESS...)
+     *
+     * @param section      The section the string is in (e.g. INFO, ERROR, SUCCESS...)
      * @param defaultValue The default value (can be array)
      */
     public LocaleString(LocaleSection section, String... defaultValue) {
@@ -37,6 +39,7 @@ public class LocaleString {
 
     /**
      * Gets value by index
+     *
      * @param index The index
      * @return The value
      */
@@ -46,6 +49,7 @@ public class LocaleString {
 
     /**
      * Gets first value
+     *
      * @return The value
      */
     public String getValue() {
@@ -54,6 +58,7 @@ public class LocaleString {
 
     /**
      * Sets all values
+     *
      * @param values The values
      */
     public void setValues(String... values) {
@@ -62,16 +67,17 @@ public class LocaleString {
 
     /**
      * Converts message to String
+     *
      * @return The string
      */
     @Override
     public String toString() {
         StringBuilder message = new StringBuilder();
 
-        for(int i = 0; i < values.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             message.append(values[i]);
 
-            if(i < values.length - 1) {
+            if (i < values.length - 1) {
                 message.append("\n");
             }
         }
@@ -81,6 +87,7 @@ public class LocaleString {
 
     /**
      * Converts to string with given placeholders
+     *
      * @param placeholders Placeholders; format: "%EXAMPLE_PLACEHOLDER%", "Example", ...
      * @return The string
      */
@@ -94,6 +101,7 @@ public class LocaleString {
 
     /**
      * Sets prefix for next message. Set to null to disable
+     *
      * @param prefix The prefix (LocaleString)
      * @return Itself for daisy-chaining
      */
@@ -104,7 +112,8 @@ public class LocaleString {
 
     /**
      * Send message to CommandSender with placeholders
-     * @param sender Sender to send message to
+     *
+     * @param sender       Sender to send message to
      * @param placeholders Placeholders; format: "%EXAMPLE_PLACEHOLDER%", "Example", ...
      */
     public void message(CommandSender sender, String... placeholders) {
@@ -123,6 +132,7 @@ public class LocaleString {
 
     /**
      * Broadcast message to all players on server
+     *
      * @param placeholders Placeholders
      */
     public void broadcast(String... placeholders) {

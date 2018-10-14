@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Util to generate random colors.
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -13,6 +14,7 @@ public class ColorUtil {
 
     /**
      * Picks random color from HSB-Spectrum
+     *
      * @return The color
      */
     public static org.bukkit.Color getRandomHSBColor() {

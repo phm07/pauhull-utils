@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Particle Effect class
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -19,11 +20,12 @@ public abstract class ParticleEffect {
 
     /**
      * Used to create a new particle effect
-     * @param scheduler Scheduler for Timing (See {@link de.pauhull.utils.scheduler.Scheduler})
-     * @param runnable Code which gets executed on particle update
+     *
+     * @param scheduler    Scheduler for Timing (See {@link de.pauhull.utils.scheduler.Scheduler})
+     * @param runnable     Code which gets executed on particle update
      * @param initialDelay Start animation after x millis
-     * @param period Run code every x millis
-     * @param unit Unit of time (Milliseconds recommended)
+     * @param period       Run code every x millis
+     * @param unit         Unit of time (Milliseconds recommended)
      */
     protected ParticleEffect(ScheduledExecutorService scheduler, Runnable runnable, int initialDelay, int period, TimeUnit unit) {
         this.scheduler = scheduler;
@@ -35,6 +37,7 @@ public abstract class ParticleEffect {
 
     /**
      * Play particle effect
+     *
      * @return The effect
      */
     public ParticleEffect play() {
@@ -44,6 +47,7 @@ public abstract class ParticleEffect {
 
     /**
      * Stop particle effect
+     *
      * @return The effect
      */
     public ParticleEffect stop() {

@@ -9,6 +9,7 @@ import static de.pauhull.utils.misc.MinecraftVersion.v1_11;
 
 /**
  * Sends title message (upper text)
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -22,9 +23,10 @@ public class TitleMessage implements MessageType {
 
     /**
      * Creates new TitleMessage from parameters
-     * @param title The title (upper text)
-     * @param fadeIn Fade in time in ticks
-     * @param stay Stay time in ticks
+     *
+     * @param title   The title (upper text)
+     * @param fadeIn  Fade in time in ticks
+     * @param stay    Stay time in ticks
      * @param fadeOut Fade out time in ticks
      */
     public TitleMessage(String title, int fadeIn, int stay, int fadeOut) {
@@ -36,12 +38,13 @@ public class TitleMessage implements MessageType {
 
     /**
      * Sends title to player
+     *
      * @param player The player
      */
     @Override
     public void send(Player player) {
-        if(MinecraftVersion.CURRENT_VERSION.isGreaterOrEquals(v1_11)) {
-            player.sendTitle(title,  null, fadeIn, stay, fadeOut);
+        if (MinecraftVersion.CURRENT_VERSION.isGreaterOrEquals(v1_11)) {
+            player.sendTitle(title, null, fadeIn, stay, fadeOut);
         } else {
             NMSClasses.sendTitlesNMS(player, title, null, fadeIn, stay, fadeOut);
         }

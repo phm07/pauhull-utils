@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -20,6 +19,7 @@ import java.util.function.Consumer;
 
 /**
  * Fetches UUIDs/Names with Mojang-API
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -29,6 +29,7 @@ public class AsynchronousUUIDFetcher {
 
     /**
      * Create new AsynchronousUUIDFetcher with given ExecutorService
+     *
      * @param executor The ExecutorService
      */
     public AsynchronousUUIDFetcher(ExecutorService executor) {
@@ -37,8 +38,9 @@ public class AsynchronousUUIDFetcher {
 
     /**
      * Create new AsynchronousUUIDFetcher and create new ExecutorService with given number of Threads
-     * @deprecated Use {@link #AsynchronousUUIDFetcher(ExecutorService)} instead
+     *
      * @param threads Number of threads
+     * @deprecated Use {@link #AsynchronousUUIDFetcher(ExecutorService)} instead
      */
     @Deprecated
     public AsynchronousUUIDFetcher(int threads) {
@@ -47,6 +49,7 @@ public class AsynchronousUUIDFetcher {
 
     /**
      * Creates UUID from String
+     *
      * @param uuidAsString The UUID as String
      * @return The UUID
      */
@@ -74,9 +77,10 @@ public class AsynchronousUUIDFetcher {
 
     /**
      * Fetches UUID from player name
-     * @deprecated Use {@link #fetchNameAsync(UUID, Consumer)} instead
+     *
      * @param playerName The player name
      * @return The UUID
+     * @deprecated Use {@link #fetchNameAsync(UUID, Consumer)} instead
      */
     @Deprecated
     public UUID fetchUUIDSync(String playerName) {
@@ -111,9 +115,10 @@ public class AsynchronousUUIDFetcher {
 
     /**
      * Fetches name from UUID
-     * @deprecated Use {@link #fetchNameAsync(UUID, Consumer)} instead
+     *
      * @param uuid The UUID
      * @return the player name
+     * @deprecated Use {@link #fetchNameAsync(UUID, Consumer)} instead
      */
     @Deprecated
     public String fetchNameSync(UUID uuid) {
@@ -130,7 +135,7 @@ public class AsynchronousUUIDFetcher {
             }
 
             inputStream = connection.getInputStream();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
@@ -147,8 +152,9 @@ public class AsynchronousUUIDFetcher {
 
     /**
      * Fetches UUID from player name asynchronously
+     *
      * @param playerName The player name
-     * @param consumer Returns the UUID
+     * @param consumer   Returns the UUID
      */
     public void fetchUUIDAsync(String playerName, Consumer<UUID> consumer) {
         executor.execute(() -> {
@@ -186,7 +192,8 @@ public class AsynchronousUUIDFetcher {
 
     /**
      * Fetches player name from UUID asynchronously
-     * @param uuid The UUID
+     *
+     * @param uuid     The UUID
      * @param consumer Returns player name
      */
     public void fetchNameAsync(UUID uuid, Consumer<String> consumer) {
@@ -224,6 +231,7 @@ public class AsynchronousUUIDFetcher {
     /**
      * Shuts down executor.
      * Only needs to be done after {@link #AsynchronousUUIDFetcher(int)} is used.
+     *
      * @deprecated Create your own ExecutorService with {@link Scheduler} and shut it down yourself.
      */
     @Deprecated

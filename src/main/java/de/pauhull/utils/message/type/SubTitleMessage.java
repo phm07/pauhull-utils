@@ -9,6 +9,7 @@ import static de.pauhull.utils.misc.MinecraftVersion.v1_11;
 
 /**
  * Sends sub title message (lower text)
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -22,10 +23,11 @@ public class SubTitleMessage implements MessageType {
 
     /**
      * Creates new SubTitleMessage from parameters
+     *
      * @param subTitle The title (lower text)
-     * @param fadeIn Fade in time in ticks
-     * @param stay Stay time in ticks
-     * @param fadeOut Fade out time in ticks
+     * @param fadeIn   Fade in time in ticks
+     * @param stay     Stay time in ticks
+     * @param fadeOut  Fade out time in ticks
      */
     public SubTitleMessage(String subTitle, int fadeIn, int stay, int fadeOut) {
         this.subTitle = subTitle;
@@ -36,11 +38,12 @@ public class SubTitleMessage implements MessageType {
 
     /**
      * Sends subtitle to player
+     *
      * @param player The player
      */
     @Override
     public void send(Player player) {
-        if(MinecraftVersion.CURRENT_VERSION.isGreaterOrEquals(v1_11)) {
+        if (MinecraftVersion.CURRENT_VERSION.isGreaterOrEquals(v1_11)) {
             player.sendTitle(null, subTitle, fadeIn, stay, fadeOut);
         } else {
             NMSClasses.sendTitlesNMS(player, null, subTitle, fadeIn, stay, fadeOut);

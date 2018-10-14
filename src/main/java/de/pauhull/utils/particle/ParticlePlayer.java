@@ -6,15 +6,16 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 
 import static de.pauhull.utils.misc.MinecraftVersion.v1_13;
-import static de.pauhull.utils.misc.Reflection.*;
+import static de.pauhull.utils.misc.Reflection.getNMSClass;
+import static de.pauhull.utils.misc.Reflection.sendPacket;
 
 /**
  * Utility to play particles with NMS
+ *
  * @author pauhull
  * @version 1.1
  */

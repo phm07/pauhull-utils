@@ -1,5 +1,6 @@
 /**
  * Utility to create particle effects with NMS
+ *
  * @author pauhull
  * @version 1.1
  */

@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * Utility for easy locales for your plugin.
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -28,6 +29,7 @@ public abstract class Locale {
 
     /**
      * Creates Locale and sets default {@link Language}
+     *
      * @param defaultLanguage If a message is not found, it will be chosen from this language
      */
     protected Locale(Class<? extends Language> defaultLanguage) {
@@ -35,14 +37,10 @@ public abstract class Locale {
     }
 
     /**
-     * Copy all language files to plugin folder
-     */
-    public abstract void writeLanguageFiles();
-
-    /**
      * Copies language to File
+     *
      * @param language The language to copy
-     * @param writeTo The file to copy it to
+     * @param writeTo  The file to copy it to
      * @return True is successful
      */
     protected static boolean writeLanguageFile(Class<? extends Language> language, File writeTo) {
@@ -61,7 +59,8 @@ public abstract class Locale {
 
     /**
      * Loads locale and writes it to given Locale class
-     * @param writeTo Class to write the fields to
+     *
+     * @param writeTo    Class to write the fields to
      * @param localeFile Locale file to load
      */
     public static void loadLocale(Class<? extends Locale> writeTo, File localeFile) {
@@ -157,6 +156,7 @@ public abstract class Locale {
 
     /**
      * Converts field name to config name, e.g. EXAMPLE_NAME to ExampleName
+     *
      * @param field The field name
      * @return The config name
      */
@@ -177,6 +177,7 @@ public abstract class Locale {
 
     /**
      * Converts config name to field name, e.g. ExampleName to EXAMPLE_NAME
+     *
      * @param name The config name
      * @return The field name
      */
@@ -195,5 +196,10 @@ public abstract class Locale {
 
         return result.toString();
     }
+
+    /**
+     * Copy all language files to plugin folder
+     */
+    public abstract void writeLanguageFiles();
 
 }

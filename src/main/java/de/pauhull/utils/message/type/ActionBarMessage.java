@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 /**
  * Sends action bar message
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -16,6 +17,7 @@ public class ActionBarMessage implements MessageType {
 
     /**
      * Create new ActionBarMessage
+     *
      * @param actionBar The message
      */
     public ActionBarMessage(String actionBar) {
@@ -24,6 +26,7 @@ public class ActionBarMessage implements MessageType {
 
     /**
      * Send message to player
+     *
      * @param player The player
      */
     @Override

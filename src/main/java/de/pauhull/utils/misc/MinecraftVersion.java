@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 
 /**
  * Utility for multi-version compatibility
+ *
  * @author pauhull
  * @version 1.0
  */
@@ -54,6 +55,7 @@ public class MinecraftVersion {
 
     /**
      * Creates new Minecraft version from parameters (e.g. 1.13.1)
+     *
      * @param major Major (first number)
      * @param minor Minor (second number)
      * @param patch Patch (third number)
@@ -66,6 +68,7 @@ public class MinecraftVersion {
 
     /**
      * Creates new Minecraft version from parameters without patch (e.g. 1.13)
+     *
      * @param major Major (first number)
      * @param minor Minor (second number)
      */
@@ -85,6 +88,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version is greater than or equals this version
+     *
      * @param major Major (first number)
      * @param minor Minor (second number)
      * @param patch Patch (third number)
@@ -98,6 +102,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version is greater than or equals this version
+     *
      * @param version Version to be checked
      * @return Returns true if version is greater or equal
      */
@@ -107,6 +112,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version is lower than or equals this version
+     *
      * @param major Major (first number)
      * @param minor Minor (second number)
      * @param patch Patch (third number)
@@ -120,6 +126,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version is lower than or equals this version
+     *
      * @param version Version to check
      * @return Returns true if version is lower or equal
      */
@@ -129,6 +136,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version equals this version
+     *
      * @param major Major (first number)
      * @param minor Minor (second number)
      * @param patch Patch (third number)
@@ -142,6 +150,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version equals this version
+     *
      * @param that Version to check
      * @return Returns true if version is equal
      */
@@ -151,6 +160,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version is greater than this version
+     *
      * @param major Major (first number)
      * @param minor Minor (second number)
      * @param patch Patch (third number)
@@ -164,6 +174,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version is greater than this version
+     *
      * @param version Version to check
      * @return Returns true if version is greater
      */
@@ -186,6 +197,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version is lower than this version
+     *
      * @param major Major (first number)
      * @param minor Minor (second number)
      * @param patch Patch (third number)
@@ -199,6 +211,7 @@ public class MinecraftVersion {
 
     /**
      * Checks if given version is lower than this version
+     *
      * @param version Version to check
      * @return Return true if version is lower
      */
@@ -208,6 +221,7 @@ public class MinecraftVersion {
 
     /**
      * Converts version to string
+     *
      * @return e.g. (1, 13, 0) -> 1.13, (1, 13, 1) -> 1.13.1
      */
     @Override
