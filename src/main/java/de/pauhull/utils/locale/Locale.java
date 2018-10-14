@@ -25,16 +25,7 @@ import java.util.Map;
 public abstract class Locale {
 
     @Getter
-    private static Class<? extends Language> defaultLanguage;
-
-    /**
-     * Creates Locale and sets default {@link Language}
-     *
-     * @param defaultLanguage If a message is not found, it will be chosen from this language
-     */
-    protected Locale(Class<? extends Language> defaultLanguage) {
-        Locale.defaultLanguage = defaultLanguage;
-    }
+    protected static Class<? extends Language> defaultLanguage;
 
     /**
      * Copies language to File
@@ -196,10 +187,5 @@ public abstract class Locale {
 
         return result.toString();
     }
-
-    /**
-     * Copy all language files to plugin folder
-     */
-    public abstract void writeLanguageFiles();
 
 }

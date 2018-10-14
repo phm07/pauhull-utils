@@ -73,11 +73,4 @@ public abstract class Language {
 
     }
 
-    /**
-     * Call {@link #writeTo(Class, File)} with own class when overriding
-     *
-     * @param file File to write language file to
-     */
-    public abstract void writeTo(File file);
-
 }
