@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
  * Reflection Utility
  *
  * @author pauhull
- * @version 1.0
+ * @version 1.1
  */
 public class Reflection {
 
@@ -64,6 +64,16 @@ public class Reflection {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * Checks if a is the same as b or extends b
+     * @param a Class a
+     * @param b Class b
+     * @return True = class extends or is same
+     */
+    public static boolean extendsFrom(Class<?> a, Class<?> b) {
+        return a == b || a.isAssignableFrom(b);
     }
 
 }

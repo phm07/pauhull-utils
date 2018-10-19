@@ -2,6 +2,7 @@ package de.pauhull.utils.locale;
 
 import de.pauhull.utils.locale.storage.LocaleSection;
 import de.pauhull.utils.locale.storage.LocaleString;
+import de.pauhull.utils.misc.Reflection;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -63,14 +64,15 @@ public abstract class Locale {
 
             for (Field field : writeTo.getFields()) {
 
-                if (field.getType() != LocaleString.class && field.getType() != LocaleSection.class)
+                if (!Reflection.extendsFrom(field.getType(), LocaleString.class) &&
+                        !Reflection.extendsFrom(field.getType(), LocaleSection.class))
                     continue;
 
                 try {
                     Field newField = defaultLanguage.getField(field.getName());
                     Object value = null;
 
-                    if (newField == null || newField.getType() != LocaleString.class || newField.getType() != LocaleSection.class) {
+                    if (newField == null || !Reflection.extendsFrom(newField.getType(), LocaleString.class) && !Reflection.extendsFrom(newField.getType(), LocaleSection.class)) {
                         Bukkit.getLogger().severe("Default language is missing field " + field.getName() + "!");
                     } else {
                         value = defaultLanguage.getField(field.getName()).get(null);
@@ -97,7 +99,7 @@ public abstract class Locale {
         }
 
         for (Field field : writeTo.getFields()) { // Write those strings to fields
-            if (field.getType() == LocaleString.class) {
+            if (Reflection.extendsFrom(field.getType(), LocaleString.class)) {
 
                 String name = convertName(field.getName());
                 if (strings.containsKey(name)) {
