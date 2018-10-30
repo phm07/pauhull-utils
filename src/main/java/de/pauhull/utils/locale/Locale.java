@@ -59,9 +59,7 @@ public abstract class Locale {
      * @param localeFile Locale file to load
      */
     public static void loadLocale(Class<? extends Locale> writeTo, File localeFile) {
-
-        LocaleS
-
+        
         FileConfiguration configuration = YamlConfiguration.loadConfiguration(localeFile);
 
         if (!localeFile.exists()) { // File doesn't exist; load default locale instead
