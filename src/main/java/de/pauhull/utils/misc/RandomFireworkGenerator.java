@@ -1,5 +1,6 @@
 package de.pauhull.utils.misc;
 
+import de.pauhull.utils.image.ColorUtil;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;

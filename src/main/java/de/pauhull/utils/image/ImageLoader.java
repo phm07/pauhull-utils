@@ -1,4 +1,4 @@
-package de.pauhull.utils.file;
+package de.pauhull.utils.image;
 
 import de.pauhull.utils.misc.Maths;
 import lombok.Getter;
