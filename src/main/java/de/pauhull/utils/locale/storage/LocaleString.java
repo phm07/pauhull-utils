@@ -1,6 +1,7 @@
 package de.pauhull.utils.locale.storage;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -22,8 +23,6 @@ public class LocaleString {
 
     @Getter
     private LocaleSection section;
-
-    private LocaleString prefix;
 
     /**
      * Create LocaleString with given {@link LocaleSection} and default values
@@ -100,26 +99,16 @@ public class LocaleString {
     }
 
     /**
-     * Sets prefix for next message. Set to null to disable
-     *
-     * @param prefix The prefix (LocaleString)
-     * @return Itself for daisy-chaining
-     */
-    public LocaleString withPrefix(LocaleString prefix) {
-        this.prefix = prefix;
-        return this;
-    }
-
-    /**
      * Send message to CommandSender with placeholders
      *
+     * @param prefix Message prefix
      * @param sender       Sender to send message to
      * @param placeholders Placeholders; format: "%EXAMPLE_PLACEHOLDER%", "Example", ...
      */
-    public void message(CommandSender sender, String... placeholders) {
+    public void message(LocaleString prefix, CommandSender sender, String... placeholders) {
 
         for (int i = 0; i < values.length; i++) {
-            String message = (prefix != null ? prefix.toString() : "") + values[i];
+            String message = (prefix != null ? prefix : "") + values[i];
 
             for (int j = 0; j < placeholders.length; j += 2) {
                 message = message.replace(placeholders[j], placeholders[j + 1]);
@@ -133,11 +122,12 @@ public class LocaleString {
     /**
      * Broadcast message to all players on server
      *
+     * @param prefix Message prefix
      * @param placeholders Placeholders
      */
-    public void broadcast(String... placeholders) {
+    public void broadcast(LocaleString prefix, String... placeholders) {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            message(player, placeholders);
+            message(prefix, player, placeholders);
         }
     }
 
