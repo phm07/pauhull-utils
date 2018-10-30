@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 /**
  * Displays face of player in chat
  * @author pauhull
- * @version 1.0
+ * @version 1.1
  */
 public class ChatFace {
 
@@ -50,6 +50,18 @@ public class ChatFace {
      */
     @Deprecated
     public String[] getLinesSync(String player) {
+        return getLinesSync(player, '▓');
+    }
+
+    /**
+     * Get lines synchronously
+     * @deprecated Use {@link #getLinesAsync(String, char, Consumer)} instead
+     * @param player Player to get face from
+     * @param boxChar Character which displays a pixel
+     * @return Player face as lines in chat
+     */
+    @Deprecated
+    public String[] getLinesSync(String player, char boxChar) {
         try {
 
             BufferedImage bufferedImage = downloadImageSync(new URL(String.format(API_URL, player)));
@@ -60,7 +72,7 @@ public class ChatFace {
             for(int y = 0; y < 8; y++) {
                 StringBuilder line = new StringBuilder();
                 for(int x = 0; x < 8; x++) {
-                    line.append(chatColors[index++]).append("▓");
+                    line.append(chatColors[index++]).append(boxChar);
                 }
 
                 arr[y] = line.toString();
@@ -80,6 +92,16 @@ public class ChatFace {
      * @param consumer Consumer of player face as lines in chat
      */
     public void getLinesAsync(String player, Consumer<String[]> consumer) {
+        getLinesAsync(player, '▓', consumer);
+    }
+
+    /**
+     * Get lines asynchronously
+     * @param player Player to get face from
+     * @param boxChar Character which displays a pixel
+     * @param consumer Consumer of player face as lines in chat
+     */
+    public void getLinesAsync(String player, char boxChar, Consumer<String[]> consumer) {
         try {
 
             downloadImageAsync(new URL(String.format(API_URL, player)), (BufferedImage bufferedImage) -> {
@@ -90,7 +112,7 @@ public class ChatFace {
                 for(int y = 0; y < 8; y++) {
                     StringBuilder line = new StringBuilder();
                     for(int x = 0; x < 8; x++) {
-                        line.append(chatColors[index++]).append("▓");
+                        line.append(chatColors[index++]).append(boxChar);
                     }
 
                     arr[y] = line.toString();
