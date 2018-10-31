@@ -106,7 +106,7 @@ public class ChatFace {
 
             downloadImageAsync(new URL(String.format(API_URL, player)), (BufferedImage bufferedImage) -> {
                 ChatColor[] chatColors = convertColorArray(getFaceArea(bufferedImage));
-                String[] arr = new String[64];
+                String[] arr = new String[8];
 
                 int index = 0;
                 for(int y = 0; y < 8; y++) {
