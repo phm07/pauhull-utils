@@ -81,7 +81,7 @@ public class LocaleString {
             }
         }
 
-        return message.toString();
+        return ChatColor.translateAlternateColorCodes('&', message.toString());
     }
 
     /**
