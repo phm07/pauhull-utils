@@ -61,13 +61,14 @@ public class ColorUtil {
     /**
      * Gets nearest ChatColor for Java color
      * @param color Java color
+     * @param availableColors Colors to choose from ("012345689abcdef" is preferred)
      * @return ChatColor
      */
-    public static ChatColor getChatColorFromRGB(Color color) {
+    public static ChatColor getChatColorFromRGB(Color color, String availableColors) {
         ChatColor nearestColor = ChatColor.BLACK;
         double nearestDistance = Double.POSITIVE_INFINITY;
 
-        for(char colorChar : "0123456789abcdef".toCharArray()) {
+        for(char colorChar : availableColors.toCharArray()) {
             ChatColor checkColor = ChatColor.getByChar(colorChar);
             double checkDistance = getDistance(color, getRGBFromChatColor(checkColor));
 

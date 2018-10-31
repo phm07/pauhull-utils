@@ -50,22 +50,23 @@ public class ChatFace {
      */
     @Deprecated
     public String[] getLinesSync(String player) {
-        return getLinesSync(player, '▓');
+        return getLinesSync(player, "0123456789abcdef", '▓');
     }
 
     /**
      * Get lines synchronously
-     * @deprecated Use {@link #getLinesAsync(String, char, Consumer)} instead
+     * @deprecated Use {@link #getLinesAsync(String, String, char, Consumer)} instead
      * @param player Player to get face from
+     * @param availableColors Colors to choose from
      * @param boxChar Character which displays a pixel
      * @return Player face as lines in chat
      */
     @Deprecated
-    public String[] getLinesSync(String player, char boxChar) {
+    public String[] getLinesSync(String player, String availableColors, char boxChar) {
         try {
 
             BufferedImage bufferedImage = downloadImageSync(new URL(String.format(API_URL, player)));
-            ChatColor[] chatColors = convertColorArray(getFaceArea(bufferedImage));
+            ChatColor[] chatColors = convertColorArray(getFaceArea(bufferedImage), availableColors);
             String[] arr = new String[8];
 
             int index = 0;
@@ -92,20 +93,21 @@ public class ChatFace {
      * @param consumer Consumer of player face as lines in chat
      */
     public void getLinesAsync(String player, Consumer<String[]> consumer) {
-        getLinesAsync(player, '▓', consumer);
+        getLinesAsync(player, "0123456789abcdef", '▓', consumer);
     }
 
     /**
      * Get lines asynchronously
      * @param player Player to get face from
+     * @param availableColors Colors to choose from
      * @param boxChar Character which displays a pixel
      * @param consumer Consumer of player face as lines in chat
      */
-    public void getLinesAsync(String player, char boxChar, Consumer<String[]> consumer) {
+    public void getLinesAsync(String player, String availableColors, char boxChar, Consumer<String[]> consumer) {
         try {
 
             downloadImageAsync(new URL(String.format(API_URL, player)), (BufferedImage bufferedImage) -> {
-                ChatColor[] chatColors = convertColorArray(getFaceArea(bufferedImage));
+                ChatColor[] chatColors = convertColorArray(getFaceArea(bufferedImage), availableColors);
                 String[] arr = new String[8];
 
                 int index = 0;
@@ -130,12 +132,13 @@ public class ChatFace {
     /**
      * Converts array of RGB colors to array of ChatColors
      * @param arr RGB color array
+     * @param availableColors Colors to choose from
      * @return ChatColor array
      */
-    private ChatColor[] convertColorArray(int[] arr) {
+    private ChatColor[] convertColorArray(int[] arr, String availableColors) {
         ChatColor[] chatColors = new ChatColor[arr.length];
         for(int i = 0; i < chatColors.length; i++) {
-            chatColors[i] = ColorUtil.getChatColorFromRGB(new Color(arr[i]));
+            chatColors[i] = ColorUtil.getChatColorFromRGB(new Color(arr[i]), availableColors);
         }
 
         return chatColors;
