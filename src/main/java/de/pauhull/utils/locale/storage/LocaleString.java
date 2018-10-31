@@ -74,14 +74,14 @@ public class LocaleString {
         StringBuilder message = new StringBuilder();
 
         for (int i = 0; i < values.length; i++) {
-            message.append(values[i]);
+            message.append(getValue(i));
 
             if (i < values.length - 1) {
                 message.append("\n");
             }
         }
 
-        return ChatColor.translateAlternateColorCodes('&', message.toString());
+        return message.toString();
     }
 
     /**
@@ -108,7 +108,7 @@ public class LocaleString {
     public void message(LocaleString prefix, CommandSender sender, String... placeholders) {
 
         for (int i = 0; i < values.length; i++) {
-            String message = (prefix != null ? prefix : "") + values[i];
+            String message = (prefix != null ? prefix.toString() : "") + getValue(i);
 
             for (int j = 0; j < placeholders.length; j += 2) {
                 message = message.replace(placeholders[j], placeholders[j + 1]);
