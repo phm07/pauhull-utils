@@ -27,10 +27,7 @@ public abstract class Locale {
 
     @Getter
     protected static Class<? extends Language> defaultLanguage = null;
-
-    @Getter
-    protected static LocaleString prefix = null;
-
+    
     /**
      * Copies language to File
      *
