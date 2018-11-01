@@ -143,4 +143,23 @@ public class ColorUtil {
         }
     }
 
+    /**
+     * Gets chat color at char index
+     * e.g. getChatColor("§4This §ais §ba §9test", 8) -> ChatColor.GREEN
+     * @param string String to inspect
+     * @param charAt Char index
+     * @return Chat color at char (RESET if none)
+     */
+    public static ChatColor getChatColorAt(String string, int charAt) {
+        for(int i = Math.min(charAt-1, string.length()-2); i >= 0; i--) {
+            char c = string.charAt(i);
+            if(c == '§') {
+                char nextChar = string.charAt(i+1);
+                return ChatColor.getByChar(nextChar);
+            }
+        }
+
+        return ChatColor.RESET;
+    }
+
 }
