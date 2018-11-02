@@ -39,15 +39,23 @@ public class NMSClasses {
     public static Object enumTitleActionSubTitle;
 
     static {
-        if (MinecraftVersion.CURRENT_VERSION.isLower(v1_11)) {
+
+        try {
             chatSerializerClass = Reflection.getNMSClass("ChatSerializer");
+            a = chatSerializerClass.getMethod("a", String.class);
+            packetPlayOutChatClass = Reflection.getNMSClass("PacketPlayOutChat");
+            packetPlayOutChatConstructor = packetPlayOutChatClass.getConstructor(chatSerializerClass, byte.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+
+
+        if (MinecraftVersion.CURRENT_VERSION.isLower(v1_11)) {
             packetPlayOutTitleClass = Reflection.getNMSClass("PacketPlayOutTitle");
             enumTitleActionClass = Reflection.getNMSClass("EnumTitleAction");
             iChatBaseComponentClass = Reflection.getNMSClass("IChatBaseComponent");
-            packetPlayOutChatClass = Reflection.getNMSClass("PacketPlayOutChat");
 
             try {
-                a = chatSerializerClass.getMethod("a", String.class);
                 valueOf = enumTitleActionClass.getMethod("valueOf", String.class);
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
@@ -56,7 +64,6 @@ public class NMSClasses {
             try {
                 packetPlayOutTitleConstructor1 = packetPlayOutTitleClass.getConstructor(enumTitleActionClass, iChatBaseComponentClass);
                 packetPlayOutTitleConstructor2 = packetPlayOutTitleClass.getConstructor(int.class, int.class, int.class);
-                packetPlayOutChatConstructor = packetPlayOutChatClass.getConstructor(chatSerializerClass, byte.class);
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
