@@ -11,6 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import static de.pauhull.utils.misc.MinecraftVersion.v1_11;
+import static de.pauhull.utils.misc.MinecraftVersion.v1_12;
 
 /**
  * Utility for NMS titles and ActionBars.
@@ -27,6 +28,7 @@ public class NMSClasses {
     public static Class<?> enumTitleActionClass;
     public static Class<?> iChatBaseComponentClass;
     public static Class<?> packetPlayOutChatClass;
+    public static Class<?> chatMessageTypeClass;
 
     public static Method a;
     public static Method valueOf;
@@ -37,43 +39,35 @@ public class NMSClasses {
 
     public static Object enumTitleActionTitle;
     public static Object enumTitleActionSubTitle;
+    public static Object gameInfo;
 
     static {
 
         try {
-            chatSerializerClass = Reflection.getNMSClass("ChatSerializer");
+            chatSerializerClass = Reflection.getNMSClass("IChatBaseComponent$ChatSerializer");
             a = chatSerializerClass.getMethod("a", String.class);
-            packetPlayOutChatClass = Reflection.getNMSClass("PacketPlayOutChat");
-            packetPlayOutChatConstructor = packetPlayOutChatClass.getConstructor(chatSerializerClass, byte.class);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-
-
-        if (MinecraftVersion.CURRENT_VERSION.isLower(v1_11)) {
-            packetPlayOutTitleClass = Reflection.getNMSClass("PacketPlayOutTitle");
-            enumTitleActionClass = Reflection.getNMSClass("EnumTitleAction");
             iChatBaseComponentClass = Reflection.getNMSClass("IChatBaseComponent");
+            packetPlayOutChatClass = Reflection.getNMSClass("PacketPlayOutChat");
 
-            try {
+            if (MinecraftVersion.CURRENT_VERSION.isLower(v1_11)) {
+                packetPlayOutTitleClass = Reflection.getNMSClass("PacketPlayOutTitle");
+                enumTitleActionClass = Reflection.getNMSClass("EnumTitleAction");
+
                 valueOf = enumTitleActionClass.getMethod("valueOf", String.class);
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            }
 
-            try {
                 packetPlayOutTitleConstructor1 = packetPlayOutTitleClass.getConstructor(enumTitleActionClass, iChatBaseComponentClass);
                 packetPlayOutTitleConstructor2 = packetPlayOutTitleClass.getConstructor(int.class, int.class, int.class);
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            }
+                packetPlayOutChatConstructor = packetPlayOutChatClass.getConstructor(iChatBaseComponentClass, byte.class);
 
-            try {
                 enumTitleActionTitle = valueOf.invoke("TITLE");
                 enumTitleActionSubTitle = valueOf.invoke("SUB_TITLE");
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
+            } else {
+                chatMessageTypeClass = Reflection.getNMSClass("ChatMessageType");
+                gameInfo = chatMessageTypeClass.getMethod("valueOf", String.class).invoke(null, "GAME_INFO");
+                packetPlayOutChatConstructor = packetPlayOutChatClass.getConstructor(iChatBaseComponentClass, chatMessageTypeClass);
             }
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
     //endregion
@@ -122,8 +116,14 @@ public class NMSClasses {
     public static void sendActionBarNMS(Player player, @NonNull String actionBar) {
         try {
 
-            Object actionBarComponent = a.invoke("{\"text\":\"" + actionBar + "\"}");
-            Object packet = packetPlayOutChatConstructor.newInstance(actionBarComponent, (byte) 2);
+            Object actionBarComponent = a.invoke(null, "{\"text\":\"" + actionBar + "\"}");
+            Object packet;
+            if(MinecraftVersion.CURRENT_VERSION.isGreaterOrEquals(v1_12)) {
+                packet = packetPlayOutChatConstructor.newInstance(actionBarComponent, gameInfo);
+            } else {
+                packet = packetPlayOutChatConstructor.newInstance(actionBarComponent, (byte) 2);
+            }
+
             Reflection.sendPacket(player, packet);
 
         } catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
