@@ -1,9 +1,6 @@
 package de.pauhull.utils.misc;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -100,9 +97,13 @@ public class TimedHashMap<K, V> implements Map<K, V> {
     public boolean checkForExpiredElements() {
         boolean removedItem = false;
 
-        for(K key : entries.keySet()) {
+        Iterator<K> iterator = entries.keySet().iterator();
+        while (iterator.hasNext()) {
+            K key = iterator.next();
+
             if(isExpired(key)) {
-                this.remove(key);
+                timestamps.remove(key);
+                iterator.remove();
                 removedItem = true;
             }
         }

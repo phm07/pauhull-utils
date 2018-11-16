@@ -25,6 +25,8 @@ import java.util.function.Consumer;
  */
 public class AsynchronousUUIDFetcher {
 
+    //TODO add cache
+
     private ExecutorService executor;
 
     /**
@@ -145,7 +147,7 @@ public class AsynchronousUUIDFetcher {
         // Parse JSON response and return name
         JsonElement element = new JsonParser().parse(bufferedReader);
         JsonArray array = element.getAsJsonArray();
-        JsonObject object = array.get(0).getAsJsonObject();
+        JsonObject object = array.get(array.size()-1).getAsJsonObject();
         return object.get("name").getAsString();
 
     }
@@ -215,7 +217,7 @@ public class AsynchronousUUIDFetcher {
                 // Parse JSON response and return name
                 JsonElement element = new JsonParser().parse(bufferedReader);
                 JsonArray array = element.getAsJsonArray();
-                JsonObject object = array.get(0).getAsJsonObject();
+                JsonObject object = array.get(array.size()-1).getAsJsonObject();
 
                 bufferedReader.close();
                 inputStream.close();
