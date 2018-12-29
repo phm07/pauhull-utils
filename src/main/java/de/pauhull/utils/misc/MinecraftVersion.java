@@ -13,7 +13,8 @@ public class MinecraftVersion {
 
     public static final MinecraftVersion CURRENT_VERSION = new MinecraftVersion();
 
-    //region Versions
+    //region VERSIONS
+    public static final MinecraftVersion v1_13_2 = new MinecraftVersion(1, 13, 2);
     public static final MinecraftVersion v1_13_1 = new MinecraftVersion(1, 13, 1);
     public static final MinecraftVersion v1_13 = new MinecraftVersion(1, 13);
     public static final MinecraftVersion v1_12_2 = new MinecraftVersion(1, 12, 2);
