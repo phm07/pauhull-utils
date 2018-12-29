@@ -1,4 +1,4 @@
-package de.pauhull.utils.misc;
+package de.pauhull.utils.fetcher;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
