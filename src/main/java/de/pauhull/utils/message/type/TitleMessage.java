@@ -5,6 +5,9 @@ import de.pauhull.utils.misc.MinecraftVersion;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import static de.pauhull.utils.misc.MinecraftVersion.v1_11;
 
 /**
@@ -44,7 +47,12 @@ public class TitleMessage implements MessageType {
     @Override
     public void send(Player player) {
         if (MinecraftVersion.CURRENT_VERSION.isGreaterOrEquals(v1_11)) {
-            player.sendTitle(title, null, fadeIn, stay, fadeOut);
+            try {
+                Method sendTitle = Player.class.getMethod("sendTitle", String.class, String.class, int.class, int.class, int.class);
+                sendTitle.invoke(player, title, null, fadeIn, stay, fadeOut);
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
         } else {
             NMSClasses.sendTitlesNMS(player, title, null, fadeIn, stay, fadeOut);
         }
